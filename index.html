@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fisher Real Estate Society | The Ohio State University</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scarlet: #BB0000;
+    --scarlet-dark: #8B0000;
+    --scarlet-light: #d63031;
+    --gray: #4a4a4a;
+    --gray-light: #888;
+    --gray-bg: #f5f4f2;
+    --white: #ffffff;
+    --cream: #faf9f7;
+    --border: rgba(187,0,0,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--scarlet);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: #1a1a1a;
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--scarlet); }
+
+  .nav-cta {
+    background: var(--scarlet) !important;
+    color: white !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+  }
+
+  .nav-cta:hover { background: var(--scarlet-dark) !important; color: white !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--scarlet);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: #1a1a1a;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title strong {
+    font-weight: 700;
+    color: var(--scarlet);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--gray);
+    max-width: 420px;
+    margin-bottom: 2.8rem;
+    font-weight: 300;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--scarlet);
+    color: white;
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--scarlet-dark); }
+
+  .btn-secondary {
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { background: #1a1a1a; color: white; }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--scarlet);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a0000 100%);
+  }
+
+  .hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(187,0,0,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(187,0,0,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-building-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 300;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-quote em {
+    color: var(--scarlet-light);
+    font-style: italic;
+  }
+
+  .hero-osu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(187,0,0,0.2);
+    border: 1px solid rgba(187,0,0,0.4);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+  }
+
+  .hero-osu-badge span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .osu-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--scarlet-light);
+    border-radius: 50%;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 4rem; }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--scarlet);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+  }
+
+  .section-title strong { font-weight: 700; }
+
+  /* ABOUT */
+  #about {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-right {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .about-card:hover { border-color: var(--scarlet); }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--scarlet);
+  }
+
+  .about-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+  }
+
+  .about-card p {
+    font-size: 0.88rem;
+    color: var(--gray-light);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* WHAT WE DO */
+  #what-we-do {
+    background: var(--cream);
+  }
+
+  .what-header {
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .what-header p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--gray);
+    font-weight: 300;
+    margin-top: 1rem;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: #ddd;
+    border: 1.5px solid #ddd;
+  }
+
+  .pillar {
+    background: white;
+    padding: 2.8rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .pillar:hover {
+    background: var(--scarlet);
+  }
+
+  .pillar:hover .pillar-num,
+  .pillar:hover .pillar-title,
+  .pillar:hover .pillar-desc {
+    color: white;
+  }
+
+  .pillar:hover .pillar-icon {
+    border-color: rgba(255,255,255,0.3);
+    color: white;
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: rgba(187,0,0,0.08);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.25s;
+  }
+
+  .pillar-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--scarlet);
+    margin-bottom: 1.2rem;
+    transition: all 0.25s;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #1a1a1a;
+    transition: color 0.25s;
+  }
+
+  .pillar-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--gray-light);
+    font-weight: 300;
+    transition: color 0.25s;
+  }
+
+  /* LEADERSHIP */
+  #leadership {
+    background: #1a1a1a;
+    color: white;
+  }
+
+  #leadership .section-title {
+    color: white;
+  }
+
+  #leadership .section-eyebrow {
+    color: var(--scarlet-light);
+  }
+
+  #leadership .section-eyebrow::before {
+    background: var(--scarlet-light);
+  }
+
+  .leadership-intro {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.75;
+    margin-bottom: 4rem;
+  }
+
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .leader-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    padding: 2rem 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+
+  .leader-card:hover {
+    border-color: var(--scarlet);
+    background: rgba(187,0,0,0.06);
+  }
+
+  .leader-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--scarlet) 0%, var(--scarlet-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .leader-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.3rem;
+  }
+
+  .leader-role {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--scarlet-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .leader-year {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  /* MEMBER LOGIN */
+  #member-login {
+    background: var(--scarlet);
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  #member-login .section-eyebrow {
+    color: rgba(255,255,255,0.6);
+  }
+
+  #member-login .section-eyebrow::before {
+    background: rgba(255,255,255,0.6);
+  }
+
+  #member-login .section-title {
+    color: white;
+  }
+
+  .login-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    margin: 1.2rem 0 2rem;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--scarlet);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-white:hover {
+    background: var(--cream);
+  }
+
+  .login-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .login-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .login-feature:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .feature-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .feature-text strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 0.2rem;
+  }
+
+  .feature-text span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+
+  /* APPLY */
+  #apply {
+    background: white;
+  }
+
+  .apply-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .apply-left p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--gray);
+    font-weight: 300;
+    margin-top: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--scarlet);
+    line-height: 1;
+    min-width: 36px;
+  }
+
+  .step-content h4 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-content p {
+    font-size: 0.85rem;
+    color: var(--gray-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .apply-right {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    border-radius: 2px;
+  }
+
+  .apply-right h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+  }
+
+  .apply-right p {
+    font-size: 0.88rem;
+    color: var(--gray-light);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .trait-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .trait-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.88rem;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  .trait-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--scarlet);
+    flex-shrink: 0;
+  }
+
+  .apply-deadline {
+    background: var(--scarlet);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-brand span {
+    color: var(--scarlet-light);
+  }
+
+  .footer-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    line-height: 1.65;
+    max-width: 320px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-nav a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover { color: var(--scarlet-light); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+
+    #hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { height: 300px; }
+
+    section { padding: 4rem 1.5rem; }
+
+    #about, #member-login, .apply-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .pillars-grid { grid-template-columns: 1fr; }
+    .leadership-grid { grid-template-columns: 1fr 1fr; }
+
+    footer { grid-template-columns: 1fr; }
+    .footer-links { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">FRES <span>| Fisher Real Estate Society</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#member-login">Members</a></li>
+    <li><a href="#apply" class="nav-cta">Apply</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">The Ohio State University · Fisher College of Business</div>
+    <h1 class="hero-title">
+      Where Future<br>
+      <strong>Real Estate Leaders</strong><br>
+      Are Built
+    </h1>
+    <p class="hero-sub">The Fisher Real Estate Society connects Ohio State's most driven students with the professionals, knowledge, and networks that define careers in commercial real estate.</p>
+    <div class="hero-buttons">
+      <a href="#apply" class="btn-primary">Apply to Join</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">100+</span>
+        <span class="stat-label">Active Members</span>
+      </div>
+      <div>
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Alumni Network</span>
+      </div>
+      <div>
+        <span class="stat-num">25+</span>
+        <span class="stat-label">Industry Partners</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-building-text">
+      <p class="hero-quote">"Real estate is not just<br>property — it's <em>the foundation</em><br>of every community."</p>
+      <div class="hero-osu-badge">
+        <div class="osu-dot"></div>
+        <span>Columbus, Ohio · Est. 2018</span>
+        <div class="osu-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text fade-in">
+    <div class="section-eyebrow">About FRES</div>
+    <h2 class="section-title">Serious About<br><strong>Commercial Real Estate</strong></h2>
+    <p>The Fisher Real Estate Society is Ohio State's premier student organization dedicated to commercial real estate. We exist to bridge the gap between the classroom and the boardroom — connecting ambitious students with the industry's most influential professionals.</p>
+    <p>Commercial real estate is one of the world's largest asset classes, touching every sector of the economy. FRES prepares its members to enter this industry with real skills, real relationships, and a real competitive edge.</p>
+    <p>Membership is selective. Our application and interview process ensures every member is committed, capable, and ready to represent Ohio State in the CRE industry.</p>
+  </div>
+  <div class="about-right fade-in">
+    <div class="about-card">
+      <h4>Our Mission</h4>
+      <p>To develop the next generation of commercial real estate leaders through education, professional development, and industry immersion — rooted in the academic excellence of Fisher College of Business.</p>
+    </div>
+    <div class="about-card">
+      <h4>Why Commercial Real Estate?</h4>
+      <p>CRE encompasses office, industrial, retail, multifamily, and hospitality assets. It sits at the intersection of finance, development, and urban strategy — offering career paths in acquisitions, development, brokerage, and capital markets.</p>
+    </div>
+    <div class="about-card">
+      <h4>The FRES Difference</h4>
+      <p>We go beyond theory. Members participate in site tours, industry panels, and recruiting pipelines that lead directly to internships and full-time roles at top CRE firms nationally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section id="what-we-do">
+  <div class="what-header fade-in">
+    <div class="section-eyebrow">Programming</div>
+    <h2 class="section-title">What We<br><strong>Do</strong></h2>
+    <p>FRES runs a full calendar of programming designed to build the skills, relationships, and professional presence that top CRE firms look for in recruits.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar fade-in">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon">🏢</div>
+      <h3 class="pillar-title">Site Tours</h3>
+      <p class="pillar-desc">Exclusive access to active development projects, Class A office towers, industrial facilities, and mixed-use developments across Columbus and beyond.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon">🎤</div>
+      <h3 class="pillar-title">Speaker Series</h3>
+      <p class="pillar-desc">Monthly sessions with executives, developers, brokers, and fund managers sharing real-world insights on deals, markets, and careers in CRE.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon">📊</div>
+      <h3 class="pillar-title">Case Competitions</h3>
+      <p class="pillar-desc">Teams analyze and pitch real acquisition opportunities to industry judges — developing the analytical and presentation skills employers demand.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-num">04</div>
+      <div class="pillar-icon">🤝</div>
+      <h3 class="pillar-title">Recruiting Pipeline</h3>
+      <p class="pillar-desc">Structured recruiting prep, resume reviews, mock interviews, and direct introductions to top firms — internships and full-time roles for members who earn them.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-num">05</div>
+      <div class="pillar-icon">🌆</div>
+      <h3 class="pillar-title">Market Education</h3>
+      <p class="pillar-desc">Weekly market updates, underwriting workshops, and deep dives into asset classes, capital markets, and deal structures across the CRE landscape.</p>
+    </div>
+    <div class="pillar fade-in">
+      <div class="pillar-num">06</div>
+      <div class="pillar-icon">🔗</div>
+      <h3 class="pillar-title">Alumni Network</h3>
+      <p class="pillar-desc">Direct access to FRES alumni now working at Blackstone, CBRE, JLL, Brookfield, and leading regional firms — mentorship that moves careers forward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-eyebrow fade-in">Leadership</div>
+  <h2 class="section-title fade-in">The People<br><strong>Running FRES</strong></h2>
+  <p class="leadership-intro fade-in">Our executive board is elected from within the membership. Every officer has gone through the same application process and earned their place.</p>
+  <div class="leadership-grid">
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">JD</div>
+      <div class="leader-name">James Davidson</div>
+      <div class="leader-role">President</div>
+      <div class="leader-year">Senior · Finance</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">SK</div>
+      <div class="leader-name">Sarah Kim</div>
+      <div class="leader-role">Vice President</div>
+      <div class="leader-year">Junior · Real Estate</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">MC</div>
+      <div class="leader-name">Marcus Chen</div>
+      <div class="leader-role">Director of Recruiting</div>
+      <div class="leader-year">Senior · Finance</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">AL</div>
+      <div class="leader-name">Ava Larson</div>
+      <div class="leader-role">Director of Education</div>
+      <div class="leader-year">Junior · Accounting</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">RP</div>
+      <div class="leader-name">Ryan Park</div>
+      <div class="leader-role">Director of Events</div>
+      <div class="leader-year">Junior · Finance</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">TN</div>
+      <div class="leader-name">Taylor Nguyen</div>
+      <div class="leader-role">Treasurer</div>
+      <div class="leader-year">Sophomore · Business</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">EW</div>
+      <div class="leader-name">Emma Walsh</div>
+      <div class="leader-role">Director of Marketing</div>
+      <div class="leader-year">Junior · Marketing</div>
+    </div>
+    <div class="leader-card fade-in">
+      <div class="leader-avatar">BJ</div>
+      <div class="leader-name">Ben Johnson</div>
+      <div class="leader-role">Secretary</div>
+      <div class="leader-year">Sophomore · Finance</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBER LOGIN -->
+<section id="member-login">
+  <div class="fade-in">
+    <div class="section-eyebrow">Member Portal</div>
+    <h2 class="section-title">Exclusive Resources<br><strong>For Members</strong></h2>
+    <p class="login-desc">Current FRES members have access to a private portal with resources, alumni contacts, and industry connections you won't find anywhere else — built to give you a direct edge in recruiting.</p>
+    <a href="#" class="btn-white">Member Login →</a>
+  </div>
+  <div class="login-features fade-in">
+    <div class="login-feature">
+      <div class="feature-icon">🎓</div>
+      <div class="feature-text">
+        <strong>Alumni Directory</strong>
+        <span>Connect with FRES graduates now working at top CRE firms nationally</span>
+      </div>
+    </div>
+    <div class="login-feature">
+      <div class="feature-icon">🏦</div>
+      <div class="feature-text">
+        <strong>Industry Contact Database</strong>
+        <span>Direct contacts at developers, REITs, brokerages, and private equity firms</span>
+      </div>
+    </div>
+    <div class="login-feature">
+      <div class="feature-icon">📁</div>
+      <div class="feature-text">
+        <strong>Recruiting Resources</strong>
+        <span>Deal memos, underwriting models, resume templates, and interview prep guides</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply">
+  <div class="apply-grid">
+    <div class="apply-left fade-in">
+      <div class="section-eyebrow">Join FRES</div>
+      <h2 class="section-title">The Application<br><strong>Process</strong></h2>
+      <p>Membership in FRES is earned, not given. We recruit students who are serious about commercial real estate — academically strong, professionally motivated, and ready to contribute to a high-caliber organization.</p>
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div class="step-content">
+            <h4>Submit Application</h4>
+            <p>Complete our written application covering your background, interests, and goals in CRE. Applications open each semester.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div class="step-content">
+            <h4>First-Round Interview</h4>
+            <p>A 20-minute conversation with two members of the executive board. We want to understand who you are and why CRE.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div class="step-content">
+            <h4>Final Interview</h4>
+            <p>Selected candidates advance to a final round with the full board. Technical and behavioral questions included.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <div class="step-content">
+            <h4>Offer & Onboarding</h4>
+            <p>Accepted members receive an offer and are onboarded into the organization ahead of the following semester.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="apply-right fade-in">
+      <h3>Who We're Looking For</h3>
+      <p>There's no single profile. We value diverse backgrounds, disciplines, and perspectives. What unites every FRES member is drive.</p>
+      <ul class="trait-list">
+        <li>Genuine interest in commercial real estate</li>
+        <li>Strong academic standing at Ohio State</li>
+        <li>Professional ambition and self-motivation</li>
+        <li>Willingness to contribute to the organization</li>
+        <li>Ability to work in a team environment</li>
+        <li>Open to any major — Finance, Real Estate, Engineering, Architecture, and more</li>
+      </ul>
+      <div class="apply-deadline">📅 &nbsp; Applications Open — Fall Semester 2025</div>
+      <a href="mailto:fres@osu.edu" class="btn-primary" style="display:block; text-align:center; text-decoration:none;">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">FRES <span>·</span> Fisher Real Estate Society</div>
+    <p class="footer-sub">The Ohio State University · Fisher College of Business<br>Columbus, Ohio · fres@osu.edu</p>
+  </div>
+  <div class="footer-links">
+    <ul class="footer-nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#member-login">Members</a></li>
+      <li><a href="#apply">Apply</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Fisher Real Estate Society. The Ohio State University.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
